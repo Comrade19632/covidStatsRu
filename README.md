@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+Working example - https://covid19stats.ru/
 # covidStatsRu
 Covid19 statistics site
 =======
