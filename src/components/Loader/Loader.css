@@ -1,0 +1,33 @@
+.preloader {
+    background-color: #FDCF60;
+    bottom: 0;
+    height: 100%;
+    left: 0;
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 100%;
+    z-index: 9999;
+}
+.gif {
+    margin: 0 auto;
+    position: relative;
+    top: 30%;
+    left: 40%;
+    z-index: 9999;
+}
+.giffy{
+    width: 300px;
+    height: auto;
+}
+@media (min-width: 200px) and (max-width: 992px) {
+    .giffy{
+        width: 150px;
+    }
+    .gif {
+        margin: 0 auto;
+        position: relative;
+        top: 35%;
+        left: 28%;
+    }
+}

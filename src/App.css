@@ -1,0 +1,30 @@
+.App {
+    text-align: center;
+}
+
+
+@keyframes App-logo-spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+
+@media (min-width: 200px) and (max-width: 992px) {
+    div {
+        font-size: 14px !important;
+    }
+    .graph {
+        display: none !important;
+    }
+    td {
+        padding: 5px !important;
+    }
+    .animateBar{
+        max-width: 330px;
+    }
+}

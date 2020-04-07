@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="b48c1f7d-bb39-4bf9-9097-86f08e0e6e60" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/covid19statsru.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/favicon.ico" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/logo192.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/logo512.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/manifest.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/robots.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/worker.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/App.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/App.test.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/AnimateBar/AnimateBar.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/AnimateBar/AnimateBar.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/AnimateBar/BarChart/Bar.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/AnimateBar/BarChart/BarChart.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/AnimateBar/BarChart/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/AnimateBar/BarChart/presets.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/HorizontalBarComp/HorizontalBarComp.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/HorizontalBarComp/HorizontalBarComp.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Loader/Loader.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Loader/Loader.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Loader/giphy.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Table/Table.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Table/Table.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Table/TableRow/TableRow.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Table/TableRow/TextField/TextField.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Table/TableRow/TextInput/TextInput.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/VerticalBar/VerticalBar.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/VerticalBar/VerticalBar.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/index.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logo.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/serviceWorker.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1aDXpmLJE1kRebrnwrcxLp9jPMI" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../covid19" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="nodejs_interpreter_path" value="node" />
+    <property name="nodejs_package_manager_path" value="yarn" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="npm.npm start">
+    <configuration name="Debug Application" type="JavascriptDebugType" uri="http://localhost:3000">
+      <method v="2" />
+    </configuration>
+    <configuration name="npm start" type="js.build_tools.npm">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="start" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="b48c1f7d-bb39-4bf9-9097-86f08e0e6e60" name="Default Changelist" comment="" />
+      <created>1586271322885</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1586271322885</updated>
+      <workItem from="1586271324834" duration="1827000" />
+      <workItem from="1586273951769" duration="10000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
