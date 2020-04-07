@@ -7,7 +7,7 @@ class AnimateBar extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            maxItems: 5
+
         };
     }
 
@@ -44,7 +44,6 @@ class AnimateBar extends React.Component {
         }
         return (
             <div className='animateBar'>
-
                 <BarChart
                     start={true}
                     data={dataObject}

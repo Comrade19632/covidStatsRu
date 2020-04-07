@@ -7,38 +7,37 @@ class VerticalBar extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            selectCountry: 'Russia',
+            countryName: 'Russia',
         };
     }
-    _handleChangeCountry = (event) => {
-        console.log(event.target.secretValue);
-        this.setState({selectCountry: event.target.value})
-    };
+
+
     render() {
-        let confirmedArrSelectedCountry = this.props.state.table[this.state.selectCountry].map(item => item["confirmed"]);
-        let deathsArrSelectedCountry = this.props.state.table[this.state.selectCountry].map(item => item["deaths"]);
-        let recoveredArrSelectedCountry = this.props.state.table[this.state.selectCountry].map(item => item["recovered"]);
+
+        let confirmedArrSelectedCountry = this.props.state.table[this.state.countryName].map(item => item["confirmed"]);
+        let deathsArrSelectedCountry = this.props.state.table[this.state.countryName].map(item => item["deaths"]);
+        let recoveredArrSelectedCountry = this.props.state.table[this.state.countryName].map(item => item["recovered"]);
 
 
         return (
             <div className={'graph'}>
 
-                <select secretValue={'1'} onChange={this._handleChangeCountry}
-                        value={this.state.selectCountry}>{this.props.countriesArr.map((item, index) => <option
+                <select name="countryName" onChange={this.props.handleChange.bind(this)}
+                        value={this.state.countryName}>{this.props.countriesArr.map((item, index) => <option
                     key={index}>{item}</option>)} </select>
 
                 <Bar data={{
                     labels: this.props.dateArr,
                     datasets: [{
-                        label: `Подтвержденные случаи заражения(${this.state.selectCountry}) `,
+                        label: `Подтвержденные случаи заражения(${this.state.countryName}) `,
                         data: confirmedArrSelectedCountry,
                         backgroundColor: 'rgba(0,102,204,1)'
                     }, {
-                        label: `Подтвержденные случаи смертей(${this.state.selectCountry}) `,
+                        label: `Подтвержденные случаи смертей(${this.state.countryName}) `,
                         data: deathsArrSelectedCountry,
                         backgroundColor: 'rgba(255,0,0,1)'
                     }, {
-                        label: `Подтвержденные случаи выздоровления(${this.state.selectCountry}) `,
+                        label: `Подтвержденные случаи выздоровления(${this.state.countryName}) `,
                         data: recoveredArrSelectedCountry,
                         backgroundColor: 'rgba(51,255,0,1)'
                     },

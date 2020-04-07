@@ -26,7 +26,15 @@ class App extends React.Component {
 
     render() {
         if (this.state.isFetching) return <Loader/>;
-
+        function handleChange  (event)  {
+            const target = event.target;
+            const value = target.value;
+            const name = target.name;
+            this.setState({
+                [name]: value
+            });
+            console.log(this.state);
+        }
 // calc world data START
         function sumArrays(...arrays) {
             const n = arrays.reduce((max, xs) => Math.max(max, xs.length), 0);
@@ -84,9 +92,9 @@ class App extends React.Component {
 
         return (
             <div className="App">
-                <AnimateBar state={this.state} dateArr={ruDateArr(dateArr)} countriesArr={countriesArr}/>
+                <AnimateBar handleChange={handleChange} state={this.state} dateArr={ruDateArr(dateArr)} countriesArr={countriesArr}/>
                 {/*<HorizontalBarComp state={this.state} dateArr={dateArr}/>*/}
-                <VerticalBar state={this.state} countriesArr={countriesArr} dateArr={ruDateArr(dateArr)}
+                <VerticalBar handleChange={handleChange} state={this.state} countriesArr={countriesArr} dateArr={ruDateArr(dateArr)}
                              confirmedArrWorld={confirmedArrWorld} deathsArrWorld={deathsArrWorld}
                              recoveredArrWorld={recoveredArrWorld}/>
 
