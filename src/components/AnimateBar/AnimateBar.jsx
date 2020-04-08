@@ -2,16 +2,16 @@ import React from 'react';
 import BarChart from './BarChart'
 
 
-
 class AnimateBar extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-
-        };
+        this.state = {};
     }
 
     render() {
+        let state = Object.assign({}, this.props.state.table);
+        delete state['Весь мир'];
+
         const randomColor = () => {
             return `rgb(${255 * Math.random()}, ${255 * Math.random()}, ${255})`;
         };
@@ -38,8 +38,8 @@ class AnimateBar extends React.Component {
         }, {});
 
         let dataObject = {};
-        for (let key in this.props.state.table){
-            let confirmed = this.props.state.table[key].map(item => item['confirmed']);
+        for (let key in state) {
+            let confirmed = state[key].map(item => item['confirmed']);
             dataObject[key] = confirmed;
         }
         return (
@@ -73,7 +73,7 @@ class AnimateBar extends React.Component {
                     maxItems={5}
                 />
             </div>
-    )
+        )
     }
 
 
