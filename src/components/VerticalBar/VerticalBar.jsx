@@ -1,5 +1,5 @@
 import React from 'react';
-import {Bar} from "react-chartjs-2";
+import Graph from "./Graph/Graph";
 
 
 class VerticalBar extends React.Component {
@@ -7,7 +7,8 @@ class VerticalBar extends React.Component {
         super(props);
         this.state = {
             countryName: 'Весь мир',
-            dataType: 'Подтвержденные случаи'
+            dataType: 'Подтвержденные случаи',
+            graphType: 'Гистограмма'
         };
     }
 
@@ -30,15 +31,18 @@ class VerticalBar extends React.Component {
                 datasets: [{
                     label: `Подтвержденные случаи заражения(${this.state.countryName}) `,
                     data: confirmedArrSelectedCountry,
-                    backgroundColor: 'rgba(0,102,204,1)'
+                    backgroundColor: 'rgba(0,102,204,1)',
+                    fill: false,
                 }, {
                     label: `Подтвержденные случаи смертей(${this.state.countryName}) `,
                     data: deathsArrSelectedCountry,
-                    backgroundColor: 'rgba(255,0,0,1)'
+                    backgroundColor: 'rgba(255,0,0,1)',
+                    fill: false,
                 }, {
                     label: `Подтвержденные случаи выздоровления(${this.state.countryName}) `,
                     data: recoveredArrSelectedCountry,
-                    backgroundColor: 'rgba(51,255,0,1)'
+                    backgroundColor: 'rgba(51,255,0,1)',
+                    fill: false,
                 },
                 ],
                 labels: this.props.dateArr
@@ -47,39 +51,36 @@ class VerticalBar extends React.Component {
                 datasets: [{
                     label: `Прирост зараженных(${this.state.countryName}) `,
                     data: confirmedArrSelectedCountryDiff,
-                    backgroundColor: 'rgba(0,102,204,1)'
+                    backgroundColor: 'rgba(0,102,204,1)',
+                    fill: false,
                 }, {
                     label: `Прирост смертей(${this.state.countryName}) `,
                     data: deathsArrSelectedCountryDiff,
-                    backgroundColor: 'rgba(255,0,0,1)'
+                    backgroundColor: 'rgba(255,0,0,1)',
+                    fill: false,
                 }, {
                     label: `Прирост случаев выздоровления(${this.state.countryName}) `,
                     data: recoveredArrSelectedCountryDiff,
-                    backgroundColor: 'rgba(51,255,0,1)'
+                    backgroundColor: 'rgba(51,255,0,1)',
+                    fill: false,
                 },
                 ],
                 labels: this.props.dateArr.slice(1)
             }
-
         };
 
         return (
             <div className={'graph'}>
-
+                <select name='graphType' onChange={this.props.handleChange.bind(this)}
+                        value={this.state.graphType}>{['Гистограмма', 'Кривая'].map((item, index) => <option
+                    key={index}>{item}</option>)} </select>
                 <select name="countryName" onChange={this.props.handleChange.bind(this)}
                         value={this.state.countryName}>{this.props.countriesArr.map((item, index) => <option
                     key={index}>{item}</option>)} </select>
                 <select name='dataType' onChange={this.props.handleChange.bind(this)}
                         value={this.state.dataType}>{['Подтвержденные случаи', 'Прирост'].map((item, index) => <option
                     key={index}>{item}</option>)} </select>
-                <Bar data={{
-                    labels: dataType[this.state.dataType].labels,
-                    datasets: dataType[this.state.dataType].datasets
-                }
-                }
-                     width={100}
-                     height={50}/>
-
+            <Graph dataType={dataType} state={this.state}/>
                 <a href="http://gradient-st.ru">Powered by Gradient Studio</a>
             </div>
         )
