@@ -26,23 +26,6 @@ class Table extends React.Component {
                         Кол-во выздоровевших
                     </td>
                 </tr>
-                <tr>
-                    <td>
-                        Весь мир
-                    </td>
-                    <td className='confirmed'>
-                        {this.props.confirmedArrWorld[this.props.confirmedArrWorld.length - 1] +
-                        ` (+${this.props.confirmedArrWorld[this.props.confirmedArrWorld.length - 1] - this.props.confirmedArrWorld[this.props.confirmedArrWorld.length - 2]} за последний день)`}
-                    </td>
-                    <td className='deaths'>
-                        {this.props.deathsArrWorld[this.props.deathsArrWorld.length - 1] +
-                        ` (+${this.props.deathsArrWorld[this.props.deathsArrWorld.length - 1] - this.props.deathsArrWorld[this.props.deathsArrWorld.length - 2]} за последний день)`}
-                    </td>
-                    <td className='recovered'>
-                        {this.props.recoveredArrWorld[this.props.recoveredArrWorld.length - 1] +
-                        ` (+${this.props.recoveredArrWorld[this.props.recoveredArrWorld.length - 1] - this.props.recoveredArrWorld[this.props.recoveredArrWorld.length - 2]} за последний день)`}
-                    </td>
-                </tr>
                 <tbody>
                 {rows}
                 </tbody>
