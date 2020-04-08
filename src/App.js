@@ -26,15 +26,16 @@ class App extends React.Component {
 
     render() {
         if (this.state.isFetching) return <Loader/>;
-        function handleChange  (event)  {
+
+        function handleChange(event) {
             const target = event.target;
             const value = target.value;
             const name = target.name;
             this.setState({
                 [name]: value
             });
-            console.log(this.state);
         }
+
 // calc world data START
         function sumArrays(...arrays) {
             const n = arrays.reduce((max, xs) => Math.max(max, xs.length), 0);
@@ -50,12 +51,13 @@ class App extends React.Component {
             deathsArrWorld = sumArrays(deathsArrWorld, key.map(item => item["deaths"]));
             recoveredArrWorld = sumArrays(recoveredArrWorld, key.map(item => item["recovered"]))
         }
+
 // calc world data END
 
         let dateArr = this.state.table['US'].map(item => item["date"]);
-        let ruDateArr = (dateArr) => {
-            return  dateArr.map(item => {
-                let [yy,mm,dd] = item.split('-');
+        let ruDateArrFn = (dateArr) => {
+            return dateArr.map(item => {
+                let [yy, mm, dd] = item.split('-');
                 switch (mm) {
                     case '1':
                         mm = 'Января';
@@ -87,19 +89,29 @@ class App extends React.Component {
                 return `${dd} ${mm} ${yy}г.`
             });
         };
+        let ruDateArr = ruDateArrFn(dateArr);
+
+        let state = {};
+        state.table = this.state.table;
+        state.table['Весь мир'] = [];
+        for (let i = 0; i < dateArr.length; i++) {
+            state.table['Весь мир'].push({
+                "date": dateArr[i],
+                "confirmed": confirmedArrWorld[i],
+                "deaths": deathsArrWorld[i],
+                "recovered": recoveredArrWorld[i]
+            })
+        }
         let countriesArr = Object.keys(this.state.table);
-
-
         return (
             <div className="App">
-                <AnimateBar handleChange={handleChange} state={this.state} dateArr={ruDateArr(dateArr)} countriesArr={countriesArr}/>
+                <div>База данных сайта по распространению COVID-19 актуальна на {ruDateArr[ruDateArr.length - 1]}</div>
+                <AnimateBar handleChange={handleChange} state={this.state} dateArr={ruDateArr}
+                            countriesArr={countriesArr}/>
                 {/*<HorizontalBarComp state={this.state} dateArr={dateArr}/>*/}
-                <VerticalBar handleChange={handleChange} state={this.state} countriesArr={countriesArr} dateArr={ruDateArr(dateArr)}
-                             confirmedArrWorld={confirmedArrWorld} deathsArrWorld={deathsArrWorld}
-                             recoveredArrWorld={recoveredArrWorld}/>
+                <VerticalBar handleChange={handleChange} state={state} countriesArr={countriesArr} dateArr={ruDateArr}/>
 
-                <Table state={this.state.table} confirmedArrWorld={confirmedArrWorld} deathsArrWorld={deathsArrWorld}
-                       recoveredArrWorld={recoveredArrWorld}/>
+                <Table state={state.table}/>
             </div>
         )
     }
