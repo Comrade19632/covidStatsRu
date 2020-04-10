@@ -1,120 +1,123 @@
 import React from 'react';
 import './App.css';
-import Table from "./components/Table/Table";
-import Loader from "./components/Loader/Loader";
-import VerticalBar from "./components/VerticalBar/VerticalBar";
-import HorizontalBarComp from "./components/HorizontalBarComp/HorizontalBarComp";
-import AnimateBar from "./components/AnimateBar/AnimateBar";
+import Table from './components/Table/Table';
+import Loader from './components/Loader/Loader';
+import VerticalBar from './components/VerticalBar/VerticalBar';
+import HorizontalBarComp from './components/HorizontalBarComp/HorizontalBarComp';
+import AnimateBar from './components/AnimateBar/AnimateBar';
 
 class App extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            table: {},
-            isFetching: true,
-        };
+  constructor(props) {
+    super(props);
+    this.state = {
+      table: {},
+      isFetching: true,
+    };
+  }
+
+  componentDidMount() {
+    fetch('https://pomber.github.io/covid19/timeseries.json')
+      .then((response) => response.json(), () => {
+        alert('Data loading error, check your internet connection');
+      })
+      .then((data) => this.setState({ table: data, isFetching: false }));
+  }
+
+  render() {
+    if (this.state.isFetching) return <Loader />;
+
+    function handleChange(event) {
+      const { target } = event;
+      const { value } = target;
+      const { name } = target;
+      this.setState({
+        [name]: value,
+      });
     }
 
-    componentDidMount() {
-        fetch("https://pomber.github.io/covid19/timeseries.json")
-            .then(response => response.json(), () => {
-                alert('Data loading error, check your internet connection')
-            })
-            .then(data => this.setState({table: data, isFetching: false}));
+    // calc world data START
+    function sumArrays(...arrays) {
+      const n = arrays.reduce((max, xs) => Math.max(max, xs.length), 0);
+      const result = Array.from({ length: n });
+      return result.map((_, i) => arrays.map((xs) => xs[i] || 0).reduce((sum, x) => sum + x, 0));
     }
 
-
-    render() {
-        if (this.state.isFetching) return <Loader/>;
-
-        function handleChange(event) {
-            const target = event.target;
-            const value = target.value;
-            const name = target.name;
-            this.setState({
-                [name]: value
-            });
-        }
-
-// calc world data START
-        function sumArrays(...arrays) {
-            const n = arrays.reduce((max, xs) => Math.max(max, xs.length), 0);
-            const result = Array.from({length: n});
-            return result.map((_, i) => arrays.map(xs => xs[i] || 0).reduce((sum, x) => sum + x, 0));
-        }
-
-        let confirmedArrWorld = [];
-        let deathsArrWorld = [];
-        let recoveredArrWorld = [];
-        for (let key of Object.values(this.state.table)) {
-            confirmedArrWorld = sumArrays(confirmedArrWorld, key.map(item => item["confirmed"]));
-            deathsArrWorld = sumArrays(deathsArrWorld, key.map(item => item["deaths"]));
-            recoveredArrWorld = sumArrays(recoveredArrWorld, key.map(item => item["recovered"]))
-        }
-
-// calc world data END
-
-        let dateArr = this.state.table['US'].map(item => item["date"]);
-        let ruDateArrFn = (dateArr) => {
-            return dateArr.map(item => {
-                let [yy, mm, dd] = item.split('-');
-                switch (mm) {
-                    case '1':
-                        mm = 'Января';
-                        break;
-                    case '2':
-                        mm = 'Февраля';
-                        break;
-                    case '3':
-                        mm = 'Марта';
-                        break;
-                    case '4':
-                        mm = 'Апреля';
-                        break;
-                    case '5':
-                        mm = 'Мая';
-                        break;
-                    case '6':
-                        mm = 'Июня';
-                        break;
-                    case '7':
-                        mm = 'Июля';
-                        break;
-                    case '8':
-                        mm = 'Августа';
-                        break;
-                    default:
-
-                }
-                return `${dd} ${mm} ${yy}г.`
-            });
-        };
-        let ruDateArr = ruDateArrFn(dateArr);
-
-        let state = {};
-        state.table = this.state.table;
-        state.table['Весь мир'] = [];
-        for (let i = 0; i < dateArr.length; i++) {
-            state.table['Весь мир'].push({
-                "date": dateArr[i],
-                "confirmed": confirmedArrWorld[i],
-                "deaths": deathsArrWorld[i],
-                "recovered": recoveredArrWorld[i]
-            })
-        }
-        let countriesArr = Object.keys(this.state.table);
-        return (
-            <div className="App">
-                <div>База данных сайта по распространению COVID-19 актуальна на {ruDateArr[ruDateArr.length - 1]}</div>
-                <AnimateBar handleChange={handleChange} state={this.state} dateArr={ruDateArr}
-                            countriesArr={countriesArr}/>
-                {/*<HorizontalBarComp state={this.state} dateArr={dateArr}/>*/}
-                <VerticalBar handleChange={handleChange} state={state} countriesArr={countriesArr} dateArr={ruDateArr}/>
-
-                <Table state={state.table}/>
-            </div>
-        )
+    let confirmedArrWorld = [];
+    let deathsArrWorld = [];
+    let recoveredArrWorld = [];
+    for (const key of Object.values(this.state.table)) {
+      confirmedArrWorld = sumArrays(confirmedArrWorld, key.map((item) => item.confirmed));
+      deathsArrWorld = sumArrays(deathsArrWorld, key.map((item) => item.deaths));
+      recoveredArrWorld = sumArrays(recoveredArrWorld, key.map((item) => item.recovered));
     }
-};
+
+    // calc world data END
+
+    const dateArr = this.state.table.US.map((item) => item.date);
+    const ruDateArrFn = (dateArr) => dateArr.map((item) => {
+      let [yy, mm, dd] = item.split('-');
+      switch (mm) {
+        case '1':
+          mm = 'Января';
+          break;
+        case '2':
+          mm = 'Февраля';
+          break;
+        case '3':
+          mm = 'Марта';
+          break;
+        case '4':
+          mm = 'Апреля';
+          break;
+        case '5':
+          mm = 'Мая';
+          break;
+        case '6':
+          mm = 'Июня';
+          break;
+        case '7':
+          mm = 'Июля';
+          break;
+        case '8':
+          mm = 'Августа';
+          break;
+        default:
+      }
+      return `${dd} ${mm} ${yy}г.`;
+    });
+    const ruDateArr = ruDateArrFn(dateArr);
+
+    const state = {};
+    state.table = this.state.table;
+    state.table['Весь мир'] = [];
+    for (let i = 0; i < dateArr.length; i++) {
+      state.table['Весь мир'].push({
+        date: dateArr[i],
+        confirmed: confirmedArrWorld[i],
+        deaths: deathsArrWorld[i],
+        recovered: recoveredArrWorld[i],
+      });
+    }
+    const countriesArr = Object.keys(this.state.table);
+    return (
+      <div className="App">
+        <div>
+          База данных сайта по распространению COVID-19 актуальна на
+          {ruDateArr[ruDateArr.length - 1]}
+        </div>
+        <AnimateBar
+          handleChange={handleChange}
+          state={this.state}
+          dateArr={ruDateArr}
+          countriesArr={countriesArr}
+        />
+        {/* <HorizontalBarComp state={this.state} dateArr={dateArr}/> */}
+        <VerticalBar handleChange={handleChange} state={state} countriesArr={countriesArr} dateArr={ruDateArr} />
+
+        <Table state={state.table} />
+      </div>
+    );
+  }
+}
 
 export default App;
