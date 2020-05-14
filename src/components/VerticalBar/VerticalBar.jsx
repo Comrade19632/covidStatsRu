@@ -71,16 +71,27 @@ class VerticalBar extends React.Component {
 
         return (
             <div className={'graph'}>
-                <select name='graphType' onChange={this.props.handleChange.bind(this)}
-                        value={this.state.graphType}>{['Гистограмма', 'Кривая'].map((item, index) => <option
-                    key={index}>{item}</option>)} </select>
-                <select name="countryName" onChange={this.props.handleChange.bind(this)}
-                        value={this.state.countryName}>{this.props.countriesArr.map((item, index) => <option
-                    key={index}>{item}</option>)} </select>
-                <select name='dataType' onChange={this.props.handleChange.bind(this)}
-                        value={this.state.dataType}>{['Подтвержденные случаи', 'Прирост'].map((item, index) => <option
-                    key={index}>{item}</option>)} </select>
-            <Graph dataType={dataType} state={this.state}/>
+                <div className='container'>
+                    <div className='row'>
+                        <div className="col-sm">
+                            <select className="form-control form-control-sm" name='graphType'
+                                    onChange={this.props.handleChange.bind(this)}
+                                    value={this.state.graphType}>{['Гистограмма', 'Кривая'].map((item, index) => <option
+                                key={index}>{item}</option>)} </select></div>
+                        <div className="col-sm">
+                            <select className="form-control form-control-sm" name="countryName"
+                                    onChange={this.props.handleChange.bind(this)}
+                                    value={this.state.countryName}>{this.props.countriesArr.map((item, index) => <option
+                                key={index}>{item}</option>)} </select></div>
+                        <div className="col-sm">
+                            <select className="form-control form-control-sm" name='dataType'
+                                    onChange={this.props.handleChange.bind(this)}
+                                    value={this.state.dataType}>{['Подтвержденные случаи', 'Прирост'].map((item, index) =>
+                                <option
+                                    key={index}>{item}</option>)} </select></div>
+                    </div>
+                </div>
+                <Graph dataType={dataType} state={this.state}/>
                 <a href="http://gradient-st.ru">Powered by Gradient Studio</a>
             </div>
         )
