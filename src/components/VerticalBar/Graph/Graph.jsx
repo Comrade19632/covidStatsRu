@@ -1,21 +1,19 @@
 import React from 'react';
 import {Bar, Line} from "react-chartjs-2";
+import {connect} from 'react-redux';
 
 
 class Graph extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-
-        };
     }
 
 
     render() {
-       if (this.props.state.graphType === 'Гистограмма') return (
+       if (this.props.select.graphType === 'Гистограмма') return (
            <Bar data={{
-               labels: this.props.dataType[this.props.state.dataType].labels,
-               datasets: this.props.dataType[this.props.state.dataType].datasets
+               labels: this.props.dataType[this.props.select.dataType].labels,
+               datasets: this.props.dataType[this.props.select.dataType].datasets
            }
            }
                  width={100}
@@ -23,8 +21,8 @@ class Graph extends React.Component {
        );
        else return (
                 <Line data={{
-                    labels: this.props.dataType[this.props.state.dataType].labels,
-                    datasets: this.props.dataType[this.props.state.dataType].datasets
+                    labels: this.props.dataType[this.props.select.dataType].labels,
+                    datasets: this.props.dataType[this.props.select.dataType].datasets
                 }
                 }
                       width={100}
@@ -34,5 +32,10 @@ class Graph extends React.Component {
 
 
 }
+const mapStateToProps = state => {
+    return {
+        select: state.select
+    }
+};
 
-export default Graph;
+export default connect(mapStateToProps ,null)(Graph);

@@ -9,7 +9,7 @@ class AnimateBar extends React.Component {
     }
 
     render() {
-        let state = Object.assign({}, this.props.state.table);
+        let state = {...this.props.state.table}
         delete state['Весь мир'];
 
         const randomColor = () => {
