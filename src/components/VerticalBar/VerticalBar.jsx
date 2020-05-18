@@ -4,17 +4,11 @@ import {connect} from 'react-redux';
 import {changeCountry, changeDataType, changeGraphType} from "../../redux/actions";
 
 
-class VerticalBar extends React.Component {
-    constructor(props) {
-        super(props);
-    }
+const VerticalBar = (props) => {
 
-
-    render() {
-
-        let confirmedArrSelectedCountry = this.props.state.table[this.props.select.countryName].map(item => item["confirmed"]);
-        let deathsArrSelectedCountry = this.props.state.table[this.props.select.countryName].map(item => item["deaths"]);
-        let recoveredArrSelectedCountry = this.props.state.table[this.props.select.countryName].map(item => item["recovered"]);
+        let confirmedArrSelectedCountry = props.state.table[props.select.countryName].map(item => item["confirmed"]);
+        let deathsArrSelectedCountry = props.state.table[props.select.countryName].map(item => item["deaths"]);
+        let recoveredArrSelectedCountry = props.state.table[props.select.countryName].map(item => item["recovered"]);
         let confirmedArrSelectedCountryDiff = [];
         let deathsArrSelectedCountryDiff = [];
         let recoveredArrSelectedCountryDiff = [];
@@ -26,43 +20,43 @@ class VerticalBar extends React.Component {
         let dataType = {
             'Подтвержденные случаи': {
                 datasets: [{
-                    label: `Подтвержденные случаи заражения(${this.props.select.countryName}) `,
+                    label: `Подтвержденные случаи заражения(${props.select.countryName}) `,
                     data: confirmedArrSelectedCountry,
                     backgroundColor: 'rgba(0,102,204,1)',
                     fill: false,
                 }, {
-                    label: `Подтвержденные случаи смертей(${this.props.select.countryName}) `,
+                    label: `Подтвержденные случаи смертей(${props.select.countryName}) `,
                     data: deathsArrSelectedCountry,
                     backgroundColor: 'rgba(255,0,0,1)',
                     fill: false,
                 }, {
-                    label: `Подтвержденные случаи выздоровления(${this.props.select.countryName}) `,
+                    label: `Подтвержденные случаи выздоровления(${props.select.countryName}) `,
                     data: recoveredArrSelectedCountry,
                     backgroundColor: 'rgba(51,255,0,1)',
                     fill: false,
                 },
                 ],
-                labels: this.props.dateArr
+                labels: props.dateArr
             },
             'Прирост': {
                 datasets: [{
-                    label: `Прирост зараженных(${this.props.select.countryName}) `,
+                    label: `Прирост зараженных(${props.select.countryName}) `,
                     data: confirmedArrSelectedCountryDiff,
                     backgroundColor: 'rgba(0,102,204,1)',
                     fill: false,
                 }, {
-                    label: `Прирост смертей(${this.props.select.countryName}) `,
+                    label: `Прирост смертей(${props.select.countryName}) `,
                     data: deathsArrSelectedCountryDiff,
                     backgroundColor: 'rgba(255,0,0,1)',
                     fill: false,
                 }, {
-                    label: `Прирост случаев выздоровления(${this.props.select.countryName}) `,
+                    label: `Прирост случаев выздоровления(${props.select.countryName}) `,
                     data: recoveredArrSelectedCountryDiff,
                     backgroundColor: 'rgba(51,255,0,1)',
                     fill: false,
                 },
                 ],
-                labels: this.props.dateArr.slice(1)
+                labels: props.dateArr.slice(1)
             }
         };
 
@@ -70,7 +64,7 @@ class VerticalBar extends React.Component {
             const {target} = event;
             const {value} = target;
             const {name} = target;
-            this.props[name](value);
+            props[name](value);
         }
 
         return (
@@ -80,17 +74,17 @@ class VerticalBar extends React.Component {
                         <div className="col-sm">
                             <select className="form-control form-control-sm" name='changeGraphType'
                                     onChange={handleChange.bind(this)}
-                                    value={this.props.select.graphType}>{['Гистограмма', 'Кривая'].map((item, index) => <option
+                                    value={props.select.graphType}>{['Гистограмма', 'Кривая'].map((item, index) => <option
                                 key={index}>{item}</option>)} </select></div>
                         <div className="col-sm">
                             <select className="form-control form-control-sm" name="changeCountry"
                                     onChange={handleChange.bind(this)}
-                                    value={this.props.select.countryName}>{this.props.countriesArr.map((item, index) => <option
+                                    value={props.select.countryName}>{props.countriesArr.map((item, index) => <option
                                 key={index}>{item}</option>)} </select></div>
                         <div className="col-sm">
                             <select className="form-control form-control-sm" name='changeDataType'
                                     onChange={handleChange.bind(this)}
-                                    value={this.props.select.dataType}>{['Подтвержденные случаи', 'Прирост'].map((item, index) =>
+                                    value={props.select.dataType}>{['Подтвержденные случаи', 'Прирост'].map((item, index) =>
                                 <option
                                     key={index}>{item}</option>)} </select></div>
                     </div>
@@ -99,7 +93,7 @@ class VerticalBar extends React.Component {
                 <a href="http://gradient-st.ru">Powered by Gradient Studio</a>
             </div>
         )
-    }
+
 
 
 }
